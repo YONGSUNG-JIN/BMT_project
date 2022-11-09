@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head.ejs') %>
+
+    <body>
+        <%- include('./partials/nav.ejs') %>
+        
+            <div class="view-user p-5">
+                <div class="row mb-5">
+                    <div class="col text-center">
+                        <h3>
+                            <%= branchSchedule.title %>
+                        </h3>
+                    </div>
+                </div>
+                        <a href="<%=branchSchedule.id%>/edit" type="button" class="btn btn-light btn-small">EDIT</a>
+                        <a href="<%=branchSchedule.id%>/delete" type="button" class="btn btn-light btn-small">DELETE</a>
+                <div class="row">
+                    <div class="col">
+                        <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <% for(let prop in branchSchedule){ %>
+                                                <th scope="col"><%=prop%></th>
+                                            <% } %>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <% for(let prop in branchSchedule){ %>
+                                                <td scope="row"><%= branchSchedule[prop] %></td>
+                                            <% } %>
+                                        </tr>
+                                    </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <b>Comments</b>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <%=branchSchedule.title%>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </body>
+
+</html>

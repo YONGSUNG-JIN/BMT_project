@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/head.ejs') %>
+        <%- include('./partials/nav.ejs') %>
+        <h1>일정 내용 수정</h1>
+        <form class="row g-3 needs-validation" method="POST" action="/branch/<%= branchSchedule._id %>/edit" novalidate>
+            <div class="col-6">
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="floatingInput" value="<%= branchSchedule.title%>"
+                        placeholder="Title" name="title">
+                    <label for="floatingInput">Title</label>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="floatingInput" value="<%= branchSchedule.category%>"
+                        placeholder="Category" name="category">
+                    <label for="floatingInput">Category</label>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="floatingInput" value="<%= branchSchedule.date%>"
+                        placeholder="date" name="date">
+                    <label for="floatingInput">Due Date</label>
+                </div>
+            </div>
+            <div class="col-6">
+                Status
+                <select name="room" id="room">
+                    <option name="status" value="A: Please Check">Please Check</option>
+                    <option name="status" value="B: Checked">Checked</option>
+                    <option name="status" value="C: Holding">Holding</option>
+                    <option name="status" value="D: Done">Done</option>
+                </select> 
+            </div>
+            <div class="col-12">
+                <div class="form-floating mb-3">
+                    <textarea class="form-control" value="<%= branchSchedule.content%>" id="comments" name="content"
+                        style="height: 200px"></textarea>
+                    <label for="content">Content</label>
+                </div>
+            </div>
+            <div class="col-12 d-grid">
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </div>     
+        </form>
+    <%- include('./partials/footer.ejs') %>
+</html>
+
+

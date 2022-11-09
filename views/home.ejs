@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head.ejs') %>
+
+    <body>
+        <%- include('./partials/nav.ejs') %>
+        <h2>내부 공지</h2>
+        <ul>
+            <li>공지 1</li>
+            <li>공지 2</li>
+            <li>공지 3</li>
+        </ul>
+
+        <h2>진행 중인 이벤트</h2>
+        <table class="table table-bordered">
+                <thead>
+                    <% events.forEach(event => { %>
+                        <tr>
+                            <th scope="col"><a href="https://jsonplaceholder.typicode.com/posts"><%= event %></a></th>
+                        </tr>
+                </thead>         
+                <tbody>
+                        <tr>
+                            <td scope="row">> 상기 이벤트 상세 내용(클릭)</td>
+                        </tr>
+                    <% }) %>
+                </tbody>          
+        </table>
+    </body>
+    <%- include('./partials/footer.ejs') %>
+
+</html> 

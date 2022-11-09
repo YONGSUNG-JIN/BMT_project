@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/head.ejs') %>    
+    <%- include('./partials/nav.ejs') %>
+            <body>
+            <h1>Register Page</h1>
+            <form class="form" action="/register" method="POST">
+                <label for="email">Email</label>
+                    <input type="email" name="email" placeholder="email">
+                <div class="emailError" name="emailError"></div>
+                <label for="password">Password</label>
+                    <input type="password" name="password" placeholder="password">
+                <div class="passwordError" name="passwordError"></div>
+                <label for="passwordCheck">Password Check</label>
+                    <input type="password"  class="passwordCheckError" name="passwordCheck" placeholder="Please check your password">
+                <div name="passwordCheckError"></div>
+                <label for="team">Team</label>
+                    <input type="text" name="team" placeholder="Enter your team name">
+                <div name="teamError"></div>
+                <label for="branch">Branch</label>
+                    <input type="text" name="branch" placeholder="Enter your branch name">
+                <div name="branchError"></div>
+                <label for="role">Role</label>
+                    <input type="text" name="role" placeholder="Enter your role">
+                <div name="roleError"></div>
+                <button name="button" type="submit">Register</buttont>
+            </form>
+            <button><a href="/login">Login</a></button>
+        </body>
+        <script>
+            const form = document.querySelector('.form');
+            const emailError = document.querySelector('.emailError');
+            const passwordError = document.querySelector('.passwordError');
+            
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                const email = form.email.value;
+                const password = form.password.value;
+                const team = form.team.value;
+                const branch = form.branch.value;
+                const role = form.role.value;
+
+                // // Reset Errors
+                emailError.textContent = "";
+                passwordError.textContent = "";
+
+                try{
+                    const res = await fetch('/register', {
+                        method:'POST',
+                        body: JSON.stringify({email, password, team, branch, role}),
+                        headers: {'Content-Type': 'application/json'}
+                    });
+                    const data = await res.json();
+                    if(data.errors){
+                        emailError.textContent = data.errors.email;
+                        passwordError.textContent = data.errors.password;
+                    }
+                    if(data.user){
+                        location.assign('/')
+                    }
+                }catch(e){
+                    console.log(e)
+                }        
+            })
+        </script>
+    <%- include('./partials/footer.ejs') %>
+</html>

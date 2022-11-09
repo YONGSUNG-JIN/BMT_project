@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head.ejs') %>
+
+
+    <body>
+        <%- include('./partials/nav.ejs') %>
+            <h1>지점 업무 생성</h1>
+            <form class="row g-3 needs-validation" method="POST" action="/task/add" novalidate>
+                <input type="text" class="form-control d-none" name="sender" value="<%=currentUser.branch%>">
+                <div class="col-6">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInput" value="" placeholder="receiver"
+                            name="receiver">
+                        <label for="floatingInput">To</label>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInput" value="" placeholder="Title"
+                            name="title">
+                        <label for="floatingInput">Title</label>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInput" value="" placeholder="Category"
+                            name="category">
+                        <label for="floatingInput">Category</label>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInput" value="" placeholder="date"
+                            name="date">
+                        <label for="floatingInput">Due Date</label>
+                    </div>
+                </div>
+                <div class="col-6">
+                    Status
+                    <select name="room" id="room">
+                        <option name="status" value="A: Please Check">Please Check</option>
+                        <option name="status" value="B: Checked">Checked</option>
+                        <option name="status" value="C: Holding">Holding</option>
+                        <option name="status" value="D: Done">Done</option>
+                    </select>                
+                </div>
+                <div class="col-12">
+                    <div class="form-floating mb-3">
+                        <textarea class="form-control" placeholder="Leave a comment here" id="comments" name="content"
+                            style="height: 200px"></textarea>
+                        <label for="content">Content</label>
+                    </div>
+                </div>
+                <div class="col-12 d-grid">
+                    <button class="btn btn-primary" type="submit">Submit</button>
+                </div>
+            </form>
+            <%- include('./partials/footer.ejs') %>
+    </body>
+
+</html>

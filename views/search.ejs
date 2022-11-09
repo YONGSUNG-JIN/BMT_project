@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>지점별 일정</h2>
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">No</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Written</th>
+                    <th scope="col">Due</th>
+                    <th scope="col" class="text-end">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if(branchSchedule.length > 0) { %>
+                    <% branchSchedule.forEach(schedule => { %>
+                        <tr>
+                            <td scope="row"><%= branchSchedule.indexOf(schedule)+1 %></td>
+                            <td><a href="/branch/<%= schedule.id %>" type="button" class="btn btn-light btn-small"><%= schedule.title %></a></td>
+                            <td><%= schedule.category %></td>
+                            <td><%= schedule.updatedAt.toDateString() %></td>
+                            <td><%= schedule.date %></td>
+                            <td class="text-end">
+                                <a href="/schedule/<%=schedule._id%>" type="button" class="btn btn-light btn-small"><%= schedule.status %></a>
+                            </td>
+                        </tr>
+                    <% }) %>
+                <% } %>
+    <h2>업무 리스트</h2>
+    <table class="table table-bordered table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">No</th>
+                <th scope="col">From</th>
+                <th scope="col">To</th>
+                <th scope="col">Title</th>
+                <th scope="col">Written</th>
+                <th scope="col">Due Date</th>
+                <th scope="col" class="text-end">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if(taskList.length > 0) { %>
+                <% taskList.forEach(task => { %>
+                    <tr>
+                        <td scope="row"><%=taskList.indexOf(task)+1%></td>
+                        <td><%=task.sender%></td>
+                        <td><%=task.receiver%></td>
+                        <td><a href="task/<%=task._id%>" type="button" class="btn btn-light btn-small"><%=task.title%></a></td>
+                        <td><%=task.createdAt.toDateString()%></td>
+                        <td><%=task.date%></td>
+                        <td class="text-end">
+                            <a href="/task/<%=task._id%>" type="button" class="btn btn-light btn-small"><%= task.status %></a>
+                        </td>
+                    </tr>
+                <% }) %>
+            <% } %>
+
+</body>
+</html>
